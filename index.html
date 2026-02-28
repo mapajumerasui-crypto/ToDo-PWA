@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffde59">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        background: rgb(55, 211, 164);
+        margin: 0;
+        padding: 10px 20px;
+        min-height: 100vh;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      h1 {
+        color: rgb(5, 0, 7);
+        margin-bottom: 35px;
+        font-size: 32px;
+      }
+      input {
+        padding: 10px;
+        border: 2px solid rgb(3, 7, 10);
+        border-radius: 15px;
+        width: 300px;
+        font-size: 16px;
+      }
+      input:focus{outline: none;}
+      button {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 15px;
+        background: rgb(255, 255, 255);
+        font-size: 20px;
+        cursor: pointer;
+        border: 2px solid rgb(15, 0, 19);
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      li {
+        background: white;
+        padding: 15px;
+        margin: 10px 0px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 class="text-center"> To Do List App</h1>
+      <br>
+      <input type="text" id="InputTask" placeholder="Add a Task">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="tasklist"></ul>
+    </center>
+    <script>
+      const tasklist = document.getElementById('tasklist');
+      const taskInput = document.getElementById('InputTask');
+      function addTask() {
+        const task = taskInput.value.trim();
+        if (task){
+          const li = document.createElement('li');
+          li.textContent = task;
+          li.onclick = () => li.remove();
+          tasklist.appendChild(li);
+          taskInput.value = '';
+        }
+      }
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+      }
+    </script>
+  </body>
+</html>
